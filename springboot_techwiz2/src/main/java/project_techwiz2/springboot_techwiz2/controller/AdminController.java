@@ -66,9 +66,9 @@ public class AdminController {
         Role role2Complete = roleService.insertRole(role2);
 
         User userAdmin = new User();
-        userAdmin.setUsername("admin");
+        userAdmin.setUsername("adminadmin");
         userAdmin.setEmail("admin@localhost.com");
-        userAdmin.setPassword("123456");
+        userAdmin.setPassword("123456789");
         User userAdminComplete = userService.saveUser(userAdmin);
 
         User_roles ur = new User_roles();
