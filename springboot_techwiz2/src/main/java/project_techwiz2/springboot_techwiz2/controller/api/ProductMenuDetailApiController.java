@@ -1,6 +1,7 @@
 package project_techwiz2.springboot_techwiz2.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import project_techwiz2.springboot_techwiz2.repository.dto.ProductMenuDetailDtoR
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping(path = "api/proMenuDetail")
 public class ProductMenuDetailApiController {

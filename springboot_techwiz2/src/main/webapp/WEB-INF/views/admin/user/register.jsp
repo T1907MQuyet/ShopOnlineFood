@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Registration Page</title>
+    <title>Registration Page</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -25,7 +25,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href=""><b>Admin</b>LTE</a>
+        <a href=""><b>Admin</b></a>
     </div>
     <div class="card">
         <div class="card-body register-card-body">

@@ -1,6 +1,7 @@
 package project_techwiz2.springboot_techwiz2.model.core;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -14,6 +15,7 @@ public class Category {
     @NotEmpty(message = "category name must not be empty")
     @Size(min = 5,max = 30)
     private String cate_name;
+    @Min(value = 1,message = "please chose a status")
     private int status;
     private Date created;
 

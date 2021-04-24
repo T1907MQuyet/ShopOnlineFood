@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping(path = "api/orderDetail")
 public class OrderDetailApiController {

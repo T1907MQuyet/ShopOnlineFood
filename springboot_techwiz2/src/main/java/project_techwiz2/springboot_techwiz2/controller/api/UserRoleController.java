@@ -3,10 +3,7 @@ package project_techwiz2.springboot_techwiz2.controller.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import project_techwiz2.springboot_techwiz2.model.Role;
 import project_techwiz2.springboot_techwiz2.model.User;
 import project_techwiz2.springboot_techwiz2.model.User_roles;
@@ -16,6 +13,7 @@ import project_techwiz2.springboot_techwiz2.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @Controller
 @RequestMapping("/admin/roleUser")
 public class UserRoleController {
