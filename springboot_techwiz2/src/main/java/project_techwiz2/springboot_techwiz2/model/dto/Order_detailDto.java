@@ -1,11 +1,14 @@
-package project_techwiz2.springboot_techwiz2.model.core;
+package project_techwiz2.springboot_techwiz2.model.dto;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-public class Order_detail {
+@Table(name = "order_detail")
+public class Order_detailDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_detail_id;
@@ -13,25 +16,13 @@ public class Order_detail {
     private int quantity;
     @NotNull(message = "price must not be null")
     private double price;
-
-    @ManyToOne
     @NotNull(message = "product id must not be null")
-    @JoinColumn(name = "product_id",referencedColumnName = "product_id")
-    private Product product;
+    private int product_id;
 
-    @ManyToOne
     @NotNull(message = "order id must not be null")
-    @JoinColumn(name = "order_id",referencedColumnName = "orderId")
-    private Orders orders;
+    private int order_id;
 
-    public Order_detail() {
-    }
-
-    public Order_detail(int quantity, double price, Product product, Orders orders) {
-        this.quantity = quantity;
-        this.price = price;
-        this.product = product;
-        this.orders = orders;
+    public Order_detailDto() {
     }
 
     public int getOrder_detail_id() {
@@ -58,19 +49,19 @@ public class Order_detail {
         this.price = price;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProduct_id() {
+        return product_id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 
-    public Orders getOrder() {
-        return orders;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setOrder(Orders order) {
-        this.orders = order;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 }

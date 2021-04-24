@@ -2,14 +2,18 @@ package project_techwiz2.springboot_techwiz2.controller.api;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import project_techwiz2.springboot_techwiz2.config.exeption.ErrorDetails;
 import project_techwiz2.springboot_techwiz2.config.exeption.ResourceNotFoundException;
 import project_techwiz2.springboot_techwiz2.model.core.Orders;
 import project_techwiz2.springboot_techwiz2.repository.core.OrderRepository;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "api/orders")
@@ -44,7 +48,17 @@ public class OrderApiController {
     @RequestMapping(path = "",method = RequestMethod.POST)
     public ResponseEntity<?> saveOrder(@Valid @RequestBody Orders orders)
     {
-        return null;
+        try{
+            orders.setCreated(new Date());
+            orders.setUpdated(new Date());
+            orderRepository.save(orders);
+            return new ResponseEntity<Orders>(orders,HttpStatus.OK);
+        }catch (NoSuchElementException e)
+        {}
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setTimestamp(new Date());
+        errorDetails.setMessage("Add new unsuccessful");
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
 
