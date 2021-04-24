@@ -1,13 +1,15 @@
 package project_techwiz2.springboot_techwiz2.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import project_techwiz2.springboot_techwiz2.model.core.Product;
+import project_techwiz2.springboot_techwiz2.config.exeption.ResourceNotFoundException;
 import project_techwiz2.springboot_techwiz2.model.dto.ProductDto;
 import project_techwiz2.springboot_techwiz2.repository.core.ProductRepository;
 import project_techwiz2.springboot_techwiz2.repository.dto.ProductDtoRepository;
+
 
 import java.util.List;
 
@@ -31,6 +33,15 @@ public class ProductApiController {
     {
         List<ProductDto> list = productDtoRepository.getProByCate(cate_id);
         return list;
+    }
+
+
+    @RequestMapping(path = "/{id}")
+    public ProductDto getProById(@PathVariable(value = "id")Integer id)
+    {
+        ProductDto productDto = productDtoRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("User not found with id :"+id));
+        return productDto;
     }
 
 

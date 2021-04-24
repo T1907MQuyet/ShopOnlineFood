@@ -4,6 +4,7 @@ import project_techwiz2.springboot_techwiz2.model.Customer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,9 @@ public class Orders {
     @NotEmpty(message = "Payment  must not empty")
     private String payment;
     private double total_price;
+
+    private Date created;
+    private Date updated;
 
     @ManyToOne
     @JoinColumn(name = "customer_id",referencedColumnName = "customer_id")
