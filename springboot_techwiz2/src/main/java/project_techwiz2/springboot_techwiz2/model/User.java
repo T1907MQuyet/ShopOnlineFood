@@ -17,7 +17,7 @@ public class User {
     @Size(min = 5,max = 30)
     private String username;
     @NotEmpty(message = "Password must not empty")
-    @Size(min = 6)
+    @Size(min = 6,message = "password with 6 or more letters")
     private String password;
     @Email
     @NotEmpty(message = "Email must not empty")
