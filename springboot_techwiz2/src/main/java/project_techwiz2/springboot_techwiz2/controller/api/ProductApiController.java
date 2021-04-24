@@ -11,7 +11,7 @@ import project_techwiz2.springboot_techwiz2.repository.dto.ProductDtoRepository;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "api/product")
 public class ProductApiController {

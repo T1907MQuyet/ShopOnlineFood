@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "api/customer")
 public class CustomerApiController {

@@ -12,7 +12,7 @@ import project_techwiz2.springboot_techwiz2.repository.dto.ProductMenuDetailDtoR
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "api/proMenuDetail")
 public class ProductMenuDetailApiController {

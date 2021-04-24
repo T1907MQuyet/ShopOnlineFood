@@ -13,7 +13,7 @@ import project_techwiz2.springboot_techwiz2.service.UserService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RequestMapping("/admin/roleUser")
 public class UserRoleController {
