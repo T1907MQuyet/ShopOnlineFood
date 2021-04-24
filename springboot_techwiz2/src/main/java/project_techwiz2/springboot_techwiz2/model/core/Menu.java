@@ -1,6 +1,7 @@
 package project_techwiz2.springboot_techwiz2.model.core;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class Menu {
     private String menu_name;
     private Date created;
     private Date updated;
+    @Min(value = 1,message = "please chose a status")
     private int status;
 
     @OneToMany(mappedBy = "menu")

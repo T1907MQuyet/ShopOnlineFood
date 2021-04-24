@@ -21,81 +21,71 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
     @InitBinder
-    public void InitBinder(WebDataBinder data)
-    {
+    public void InitBinder(WebDataBinder data) {
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         data.registerCustomEditor(Date.class, new CustomDateEditor(s, true));
     }
 
     @RequestMapping(path = "")
-    public String getCategories(Model model)
-    {
+    public String getCategories(Model model) {
         Category category = new Category();
 
-        return findPaginated(1,model,category);
+        return findPaginated(1, model, category);
     }
 
-    @RequestMapping(path = "saveCate",method = RequestMethod.POST)
-    public String saveCategory(@ModelAttribute("cateNew")@Valid Category category, BindingResult result,Model model)
-    {
-        if (result.hasErrors())
-        {
-            return findPaginated(1,model,category);
+    @RequestMapping(path = "saveCate", method = RequestMethod.POST)
+    public String saveCategory(@ModelAttribute("cateNew") @Valid Category category, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return findPaginated(1, model, category);
         }
         category.setCreated(new Date());
         boolean bl = categoryService.saveCate(category);
-        if(bl)
-        {
+        if (bl) {
             return "redirect:/admin/category?success=Add New category success";
         }
         return "redirect:/admin/category?error=Add New category failed";
     }
 
     @RequestMapping(path = "editCate")
-    public String editCategory(@RequestParam("id")Integer id,Model model)
-    {
+    public String editCategory(@RequestParam("id") Integer id, Model model) {
         Category category = categoryService.getCateById(id);
-        model.addAttribute("cateEdit",category);
+        model.addAttribute("cateEdit", category);
         return "admin/category/editCate";
 
     }
-    @RequestMapping(path = "updateCategory",method = RequestMethod.POST)
-    public String updateCategory(@ModelAttribute("cateEdit")Category category)
-    {
+
+    @RequestMapping(path = "updateCategory", method = RequestMethod.POST)
+    public String updateCategory(@ModelAttribute("cateEdit") Category category) {
         boolean bl = categoryService.updateCate(category);
-        if (bl)
-        {
+        if (bl) {
             return "redirect:/admin/category?success=Update category success";
         }
         return "redirect:/admin/category?error=Update category failed";
     }
 
     @RequestMapping(path = "deleteCate")
-    public String deleteCategory(@RequestParam("id")Integer id)
-    {
+    public String deleteCategory(@RequestParam("id") Integer id) {
         boolean bl = categoryService.deleteCate(id);
-        if (bl)
-        {
+        if (bl) {
             return "redirect:/admin/category?success=Delete category success";
         }
         return "redirect:/admin/category?error=Delete category failed";
     }
 
     @RequestMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model, Category category)
-    {
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model, Category category) {
         int pageSize = 10;
-        Page<Category> page = categoryService.findPaginated(pageNo,pageSize);
+        Page<Category> page = categoryService.findPaginated(pageNo, pageSize);
         List<Category> listCategory = page.getContent();
-        model.addAttribute("currentPage",pageNo);
-        model.addAttribute("totalPages",page.getTotalPages());
-        model.addAttribute("totalItems",page.getTotalElements());
-        model.addAttribute("list",listCategory);
-        model.addAttribute("cateNew",category);
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("list", listCategory);
+        model.addAttribute("cateNew", category);
         return "admin/category/cateList";
     }
-
 
 
 }

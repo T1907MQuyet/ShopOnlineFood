@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Category Manager</h1>
+                    <h1>Menu Detail Manager</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a >Home</a></li>
-                        <li class="breadcrumb-item active">Category Manager</li>
+                        <li class="breadcrumb-item active">Menu Detail Manager</li>
                     </ol>
                 </div>
             </div>
@@ -26,36 +26,41 @@
             <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Categories List</h3>
+                        <h3 class="card-title">Menu Detail List</h3>
+
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
-                                <th style="width: 10px">STT</th>
-                                <th>Category name</th>
-                                <th>Created</th>
+                                <th style="width: 10px">No.</th>
+                                <th>Menu Detail Name</th>
+                                <th>Menu</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${list}" var="cate" varStatus="itr">
+                            <c:forEach items="${list}" var="menu_detail" varStatus="itr">
                                 <tr>
                                     <td>${offset+itr.index+1}</td>
-                                    <td>${cate.cate_name }
+                                    <td>${menu_detail.menu_detail_name}
                                         <br>
-                                        <c:if test="${cate.status ==1}">
+                                        <c:if test="${menu_detail.status ==1}">
                                             <span class="badge badge-success">Show</span>
                                         </c:if>
-                                        <c:if test="${cate.status ==2}">
+                                        <c:if test="${menu_detail.status ==2}">
                                             <span class="badge badge-danger">Hidden</span>
                                         </c:if>
+                                        <br>
+                                            ${menu_detail.created}
                                     </td>
-                                    <td>${cate.created}</td>
+
+                                    <td>${menu_detail.menu.menu_name}</td>
+
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/admin/category/editCate?id=${cate.cate_id}" class="btn  btn-info btn-sm"><i class="fas fa-pencil-alt"> </i> Edit</a>
-                                        <a href="${pageContext.request.contextPath}/admin/category/deleteCate?id=${cate.cate_id}" class="btn  btn-danger btn-sm"><i class="fas fa-trash"> </i> Delete</a>
+                                        <a href="${pageContext.request.contextPath}/admin/menuDetail/editMenuDetail?id=${menu_detail.menu_detail_id}" class="btn  btn-info btn-sm"><i class="fas fa-pencil-alt"> </i> Update</a>
+                                        <a href="${pageContext.request.contextPath}/admin/menuDetail/deleteMenuDetail?id=${menu_detail.menu_detail_id}" class="btn  btn-danger btn-sm"><i class="fas fa-trash"> </i> Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -63,23 +68,22 @@
                         </table>
                         <%-- <mytag:PaginatiomnTaglib steps="10" offset="${offset}" count="${count}" uri="/cateController/getAll.htm" next="&raquo;" previous="&laquo;"/> --%>
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer clearfix">
                         <ul class="pagination pagination-sm m-0 float-right">
                             <c:if test="${totalPages > 1}">
                                 <c:if test="${currentPage>1}">
-                                    <li class="page-item"><a class="page-link" href="/admin/category/page/${currentPage-1}">«</a></li>
+                                    <li class="page-item"><a class="page-link" href="/admin/menuDetail/page/${currentPage-1}">«</a></li>
                                 </c:if>
                                 <c:forEach  end="${totalPages}" begin="1" varStatus="loop">
                                     <c:if test="${currentPage != loop.index}">
-                                        <li class="page-item "><a class="page-link" href="/admin/category/page/${loop.index}">${loop.index}</a></li>
+                                        <li class="page-item "><a class="page-link" href="/admin/menuDetail/page/${loop.index}">${loop.index}</a></li>
                                     </c:if>
                                     <c:if test="${currentPage == loop.index}">
-                                        <li class="page-item active"><a class="page-link" href="/admin/category/page/${loop.index}">${loop.index}</a></li>
+                                        <li class="page-item active"><a class="page-link" href="/admin/menuDetail/page/${loop.index}">${loop.index}</a></li>
                                     </c:if>
                                 </c:forEach>
                                 <c:if test="${currentPage<totalPages}">
-                                    <li class="page-item"><a class="page-link" href="/admin/category/page/${currentPage+1}">»</a></li>
+                                    <li class="page-item"><a class="page-link" href="/admin/menuDetail/page/${currentPage+1}">»</a></li>
                                 </c:if>
                             </c:if>
                         </ul>
@@ -91,7 +95,7 @@
                 <!-- general form elements -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Add Category New!</h3>
+                        <h3 class="card-title">Create New Category Detail</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                                 <i class="fas fa-minus"></i></button>
@@ -100,15 +104,21 @@
                     <div class="card-body" style="display: block;">
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <%--@elvariable id="cateNew" type=""--%>
-                        <f:form action="${pageContext.request.contextPath}/admin/category/saveCate" method="POST" modelAttribute="cateNew">
-                            <spring:bind path="cate_name">
+                        <%--@elvariable id="menuDetailNew" type=""--%>
+                        <f:form action="${pageContext.request.contextPath}/admin/menuDetail/saveMenuDetail" method="POST" modelAttribute="menuDetailNew">
+                            <spring:bind path="menu_detail_name">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Category name:</label>
-                                    <f:input path="cate_name" type="text"  class="form-control  ${status.error ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Enter category name..."/>
-                                    <f:errors path="cate_name" class="text-danger"  ></f:errors>
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <f:input path="menu_detail_name" type="text"  class="form-control  ${status.error ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Name"/>
+                                    <f:errors path="menu_detail_name" class="text-danger"  ></f:errors>
                                 </div>
                             </spring:bind>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Menu</label>
+                                <f:select cssClass="custom-select" path="menu.menu_id">
+                                    <f:options items="${listMenu}" itemLabel="menu_name" itemValue="menu_id"/>
+                                </f:select>
+                            </div>
                             <spring:bind path="status">
                                 <div class="form-group">
                                     <label>Status:</label>
@@ -123,8 +133,13 @@
                                     <f:errors path="status" class="text-danger"  ></f:errors>
                                 </div>
                             </spring:bind>
+
+
+
+
+                            <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Add New</button>
+                                <button type="submit" class="btn btn-info">Create</button>
                             </div>
                         </f:form>
                     </div>
@@ -134,6 +149,9 @@
         </div>
     </div>
 </div>
+
+
+<jsp:include page="../../layout/admin/footer.jsp"/>
 
 
 <%@include file="/WEB-INF/views/layout/admin/footer.jsp" %>

@@ -2,6 +2,7 @@ package project_techwiz2.springboot_techwiz2.model.core;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,6 +17,7 @@ public class Category_detail {
     @NotEmpty(message = "Category name must not empty")
     @Size(min = 3,max = 30,message = "Category name size must be between 3 and 30")
     private String cate_detail_name;
+    @Min(value = 1,message = "please chose a status")
     private int status;
     private Date created;
     private Date updated;
