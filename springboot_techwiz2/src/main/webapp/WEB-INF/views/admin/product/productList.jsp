@@ -53,10 +53,10 @@
                                     <td><img src="${pro.image}" width="100"></td>
                                     <td>
                                         <c:if test="${pro.status ==1}">
-                                            <span class="badge badge-success">Hiện</span>
+                                            <span class="badge badge-success">Show</span>
                                         </c:if>
                                         <c:if test="${pro.status !=1}">
-                                            <span class="badge badge-danger">Ẩn</span>
+                                            <span class="badge badge-danger">Hidden</span>
                                         </c:if>
                                     </td>
                                     <td class="project-actions ">

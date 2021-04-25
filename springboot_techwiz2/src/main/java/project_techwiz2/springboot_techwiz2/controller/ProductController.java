@@ -79,12 +79,51 @@ public class ProductController {
         return "redirect:/admin/product?error=Add New product error";
     }
 
+    @RequestMapping(value = "/editPro")
+    public String editPro(@RequestParam("id")Integer id,Model model)
+    {
+        Product product = productService.getProById(id);
+        List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
+        model.addAttribute("proEdit",product);
+        model.addAttribute("listCateDetail",listCateDetail);
+        return "admin/product/editProduct";
+    }
+
+    @RequestMapping(value = "/updatePro",method = RequestMethod.POST)
+    public String updatePro(@ModelAttribute("proEdit")Product product,Model model,@RequestParam("file_avatar") MultipartFile multipartFile)throws IOException
+    {
+        Product proEdit = productService.getProById(product.getProduct_id());
+
+        if (multipartFile.getSize()>0)
+        {
+            Map result = cdService.upload(multipartFile);
+            ClImage clImage = new ClImage((String)result.get("secure_url"));
+            product.setImage(clImage.getUrl());
+        }else{
+            product.setImage(proEdit.getImage());
+        }
+
+        boolean bl = productService.updateProduct(product);
+        if (bl)
+        {
+            return "redirect:/admin/product?success=Add New product success";
+        }
+        return "redirect:/admin/product?error=Add New product error";
+    }
+
+    @RequestMapping(value = "/detailPro")
+    public String detailProductById(@RequestParam("id")Integer id,Model model)
+    {
+        Product product = productService.getProById(id);
+        model.addAttribute("proDetail",product);
+        return "admin/product/detailProduct";
+    }
 
 
     @RequestMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model)
     {
-        int pageSize = 1;
+        int pageSize = 10;
         List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
         Page<Product> page = productService.findPaginated(pageNo,pageSize);
         List<Product> listProduct = page.getContent();
