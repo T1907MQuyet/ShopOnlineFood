@@ -10,7 +10,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import project_techwiz2.springboot_techwiz2.model.ClImage;
-import project_techwiz2.springboot_techwiz2.model.core.Category;
 import project_techwiz2.springboot_techwiz2.model.core.Category_detail;
 import project_techwiz2.springboot_techwiz2.model.core.Product;
 import project_techwiz2.springboot_techwiz2.service.CategoryDetailService;
@@ -93,7 +92,6 @@ public class ProductController {
     public String updatePro(@ModelAttribute("proEdit")Product product,Model model,@RequestParam("file_avatar") MultipartFile multipartFile)throws IOException
     {
         Product proEdit = productService.getProById(product.getProduct_id());
-
         if (multipartFile.getSize()>0)
         {
             Map result = cdService.upload(multipartFile);
@@ -102,7 +100,6 @@ public class ProductController {
         }else{
             product.setImage(proEdit.getImage());
         }
-
         boolean bl = productService.updateProduct(product);
         if (bl)
         {
@@ -119,6 +116,16 @@ public class ProductController {
         return "admin/product/detailProduct";
     }
 
+    @RequestMapping(value = "/deleteProducts")
+    public String deleteProduct(@RequestParam("id")Integer id)
+    {
+        boolean bl = productService.deleteProduct(id);
+        if (bl)
+        {
+            return "redirect:/admin/product?success=Delete product success";
+        }
+        return "redirect:/admin/product?error=Delete product error";
+    }
 
     @RequestMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model)

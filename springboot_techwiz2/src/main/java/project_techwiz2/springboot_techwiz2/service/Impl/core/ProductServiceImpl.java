@@ -86,6 +86,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> lisProByCateDetail(int cate_id) {
+        try{
+            List<Product> list = productRepository.findAllByCategory_detail(cate_id);
+
+            return list;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Page<Product> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.productRepository.findPaginateProductStatus(pageable);

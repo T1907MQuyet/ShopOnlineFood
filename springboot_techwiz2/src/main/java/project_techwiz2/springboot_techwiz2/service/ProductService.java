@@ -11,5 +11,6 @@ public interface ProductService {
     boolean saveProduct(Product product);
     boolean deleteProduct(int pro_id);
     boolean updateProduct(Product product);
+    List<Product> lisProByCateDetail(int cate_id);
     Page<Product> findPaginated(int pageNo,int pageSize);
 }

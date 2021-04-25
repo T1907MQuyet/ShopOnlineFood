@@ -60,8 +60,8 @@
                                         </c:if>
                                     </td>
                                     <td class="project-actions ">
-                                        <a href="${pageContext.request.contextPath}/admin/product/detailPro?id=${pro.product_id}" class="btn btn-primary btn-sm"><i class="fas fa-folder"> </i> Chi Tiết</a>
-                                        <a href="deleteProducts?id=${pro.product_id}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Xóa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/product/detailPro?id=${pro.product_id}" class="btn btn-primary btn-sm"><i class="fas fa-folder"> </i>Detail</a>
+                                        <a href="${pageContext.request.contextPath}/admin/product/deleteProducts?id=${pro.product_id}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>

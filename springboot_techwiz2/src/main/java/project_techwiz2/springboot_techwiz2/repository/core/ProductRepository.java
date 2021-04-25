@@ -13,6 +13,9 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Query("SELECT p FROM Product p WHERE  cate_detail_id = ?1 AND status=1 ORDER BY priority ASC")
     List<Product> getProByCate(int cate_id);
 
+    @Query("SELECT p FROM Product p WHERE  cate_detail_id = ?1 AND status=1")
+    List<Product> findAllByCategory_detail(int cate_id);
+
     @Query("SELECT p FROM Product p WHERE status = 1 OR status = 2")
     List<Product> getAllProductStatus();
 

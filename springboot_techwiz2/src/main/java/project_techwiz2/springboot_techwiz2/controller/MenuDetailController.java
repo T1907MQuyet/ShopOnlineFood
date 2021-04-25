@@ -9,13 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import project_techwiz2.springboot_techwiz2.model.core.Menu;
-import project_techwiz2.springboot_techwiz2.model.core.Menu_detail;
-import project_techwiz2.springboot_techwiz2.service.MenuDetailService;
-import project_techwiz2.springboot_techwiz2.service.MenuService;
+import project_techwiz2.springboot_techwiz2.model.core.*;
+import project_techwiz2.springboot_techwiz2.service.*;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +25,12 @@ public class MenuDetailController {
     private MenuDetailService menuDetailService;
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private ProductMenuDetailService productMenuDetailService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CategoryDetailService categoryDetailService;
 
     @InitBinder
     public void InitBinder(WebDataBinder data)
@@ -95,6 +100,78 @@ public class MenuDetailController {
     }
 
 
+    //hien thi chi tiet menu detail co ca san pham
+    @RequestMapping(path = "/detailMenuDetail")
+    public String detailMenuDetail(@RequestParam("id")Integer id,Model model)
+    {
+        Menu_detail menu_detail = menuDetailService.getMenuDetailById(id);
+        List<Product_menu_detail> list = productMenuDetailService.lisProMenuDetailByMenu(id);
+        List<Product> productList = productService.listProduct();
+        List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
+
+        model.addAttribute("menu_detail",menu_detail);
+        model.addAttribute("listProMD",list);
+        model.addAttribute("listProduct",productList);
+        model.addAttribute("listCateDetail",listCateDetail);
+        return "admin/menuDetail/detailMenuDetail";
+    }
+
+    @RequestMapping(path = "/proByCate")
+    public String productByCate(@RequestParam("cate_id")Integer cateId,@RequestParam("proMNId")Integer proMNId,Model model)
+    {
+        //List<Product> listProByCate = productService.lisProByCateDetail(cateId);
+        List<Product> listProByCate = getProNotMenu(cateId,proMNId);
+        model.addAttribute("proMNId",proMNId);
+        model.addAttribute("listProduct",listProByCate);
+        return "admin/ajax/productByCate";
+    }
+
+    public List<Product> getProNotMenu(int cate_id,int menu_detail_id)
+    {
+        List<Product> listPro = new ArrayList<>();
+        List<Product> listProByCateDetail = productService.lisProByCateDetail(cate_id);
+        List<Product_menu_detail> listProByMenuId = productMenuDetailService.lisProMenuDetailByMenu(menu_detail_id);
+
+        for (Product product:listProByCateDetail)
+        {
+            boolean bl = productMenuDetailService.getProMDByMDIdbyProId(menu_detail_id,product.getProduct_id());
+            if (bl==false)
+            {
+                listPro.add(product);
+            }
+        }
+        return listPro;
+    }
+
+
+
+    //them vao menu
+    @RequestMapping("insertProMenuDetail")
+    public String saveProMenuDetail(@RequestParam("product_id")Integer proId,@RequestParam("menuD_id")Integer menu_detail_id)
+    {
+        Product product = productService.getProById(proId);
+        Menu_detail menu_detail = menuDetailService.getMenuDetailById(menu_detail_id);
+        Product_menu_detail product_menu_detail=new Product_menu_detail(product,menu_detail);
+        boolean bl = productMenuDetailService.saveProMenuDetail(product_menu_detail);
+        if (bl)
+        {
+            return "redirect:/admin/menuDetail/detailMenuDetail?id="+menu_detail_id+"&&success=Update menu detail detail success";
+        }
+        return "redirect:/admin/menuDetail/detailMenuDetail?id="+menu_detail_id+"&&error=Update menu detail detail error";
+    }
+
+    //Remove khoi pro menu detail
+    @RequestMapping("removeProMD")
+    public String removeProMenuDetail(@RequestParam("id")Integer pro_menu_detail_id,@RequestParam("menuD_id")Integer menu_detail_id)
+    {
+        boolean bl = productMenuDetailService.deleteProMenuDetail(pro_menu_detail_id);
+        if (bl)
+        {
+            return "redirect:/admin/menuDetail/detailMenuDetail?id="+menu_detail_id+"&&success=Update menu detail detail success";
+        }
+        return "redirect:/admin/menuDetail/detailMenuDetail?id="+menu_detail_id+"&&error=Update menu detail detail error";
+
+    }
 
     @RequestMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model, Menu_detail menu_detail)
@@ -111,4 +188,6 @@ public class MenuDetailController {
         model.addAttribute("listMenu",listMenu);
         return "admin/menuDetail/menuDetailList";
     }
+
+
 }

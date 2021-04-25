@@ -27,7 +27,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Menu Detail List</h3>
-
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -59,6 +58,7 @@
                                     <td>${menu_detail.menu.menu_name}</td>
 
                                     <td>
+                                        <a href="${pageContext.request.contextPath}/admin/menuDetail/detailMenuDetail?id=${menu_detail.menu_detail_id}" class="btn  btn-primary btn-sm"><i class="fas fa-folder"> </i> Detail</a>
                                         <a href="${pageContext.request.contextPath}/admin/menuDetail/editMenuDetail?id=${menu_detail.menu_detail_id}" class="btn  btn-info btn-sm"><i class="fas fa-pencil-alt"> </i> Update</a>
                                         <a href="${pageContext.request.contextPath}/admin/menuDetail/deleteMenuDetail?id=${menu_detail.menu_detail_id}" class="btn  btn-danger btn-sm"><i class="fas fa-trash"> </i> Delete</a>
                                     </td>
@@ -133,10 +133,6 @@
                                     <f:errors path="status" class="text-danger"  ></f:errors>
                                 </div>
                             </spring:bind>
-
-
-
-
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info">Create</button>
@@ -149,11 +145,6 @@
         </div>
     </div>
 </div>
-
-
-<jsp:include page="../../layout/admin/footer.jsp"/>
-
-
 <%@include file="/WEB-INF/views/layout/admin/footer.jsp" %>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
