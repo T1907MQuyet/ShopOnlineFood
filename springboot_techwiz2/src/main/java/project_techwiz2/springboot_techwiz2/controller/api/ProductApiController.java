@@ -34,6 +34,13 @@ public class ProductApiController {
         return list;
     }
 
+    @RequestMapping(path = "/status")
+    public List<ProductDto> getProByStatus(@RequestParam("status")Integer status)
+    {
+        List<ProductDto> list = productDtoRepository.findAllByStatus(status);
+        return list;
+    }
+
 
     @RequestMapping(path = "/{id}")
     public ProductDto getProById(@PathVariable(value = "id")Integer id)

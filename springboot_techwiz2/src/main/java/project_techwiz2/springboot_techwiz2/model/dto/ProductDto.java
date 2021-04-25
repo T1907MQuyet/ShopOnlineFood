@@ -8,6 +8,7 @@ import project_techwiz2.springboot_techwiz2.model.core.Product_menu_detail;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -37,6 +38,9 @@ public class ProductDto {
     @NotEmpty(message = "Image must not empty")
     @Column(name = "image")
     private String image;
+
+    private Date created;
+    private Date updated;
 
     @ManyToOne
     @JoinColumn(name = "cate_detail_id",referencedColumnName = "cate_detail_id")
@@ -112,5 +116,21 @@ public class ProductDto {
 
     public void setCategory_detail(Category_detail category_detail) {
         this.category_detail = category_detail;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }

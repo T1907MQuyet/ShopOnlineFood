@@ -34,6 +34,13 @@ public class CategoryDetailApiController {
         return list;
     }
 
+    @RequestMapping(path = "/status")
+    public List<Category_detail> getByCateDetail(@RequestParam("status")Integer status)
+    {
+        List<Category_detail> list = categoryDetailRepository.findAllByStatus(status);
+        return list;
+    }
+
     @RequestMapping(path = "",method = RequestMethod.POST)
     public ResponseEntity<?> saveCateDetail(@Valid @RequestBody Category_detail category_detail)
     {

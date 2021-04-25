@@ -1,8 +1,11 @@
 package project_techwiz2.springboot_techwiz2.model.core;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -13,17 +16,19 @@ public class Product {
     @NotEmpty(message = "Product name  must not empty")
     @Size(min = 3,max = 30)
     private String product_name;
-    @NotEmpty(message = "Price must not empty")
+    @DecimalMin(value = "1.0",message = "price must be greater than 0")
     private double price;
+    @Min(0)
     private int discount;
     @NotEmpty(message = "Description  must not empty")
     private String descriptions;
     private int status;
-    @NotEmpty(message = "priority must not empty")
+    @Min(0)
     private int priority;
-    @NotEmpty(message = "Image must not empty")
-    private String image;
 
+    private String image;
+    private Date created;
+    private Date updated;
     @ManyToOne
     @JoinColumn(name = "cate_detail_id",referencedColumnName = "cate_detail_id")
     private Category_detail category_detail;
@@ -130,5 +135,21 @@ public class Product {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }
