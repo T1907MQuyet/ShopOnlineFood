@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CategoryDetailService {
     List<Category_detail> lisCategoryDetails();
+    List<Category_detail> listCateDetailStatus(int status);
     Category_detail getCateDetailById(int cate_id);
     boolean saveCate(Category_detail category_detail);
     boolean deleteCate(int cate_id);

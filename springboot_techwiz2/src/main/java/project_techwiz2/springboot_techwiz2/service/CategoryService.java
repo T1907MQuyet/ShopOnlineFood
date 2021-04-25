@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CategoryService {
     List<Category> lisCategories();
+    List<Category> listCateByStatus(int status);
     Category getCateById(int cate_id);
     boolean saveCate(Category category);
     boolean updateCate(Category category);

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="pageTitle" scope="request" value="Category Manager"/>
+<c:set var="pageTitle" scope="request" value="Product Manager"/>
 <%@include file="/WEB-INF/views/layout/admin/header.jsp" %>
 <div class="content-wrapper">
     <section class="content-header">
@@ -16,6 +16,15 @@
                         <li class="breadcrumb-item"><a >Home</a></li>
                         <li class="breadcrumb-item active">Product Manager</li>
                     </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-2">
+                            <a class="btn btn-block btn-warning btn-sm" href="${pageContext.request.contextPath}/admin/product/insertProduct">Insert Product</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -33,11 +42,10 @@
                             <thead>
                             <tr>
                                 <th style="width: 10px">STT</th>
-                                <th>Product Name</th>
+                                <th>Product</th>
                                 <th>Category Detail</th>
                                 <th>Price</th>
                                 <th>Image</th>
-                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -46,19 +54,18 @@
                                 <tr>
                                     <td>${offset+itr.index+1}
                                     </td>
-                                    <td>${pro.product_name
-                                    }</td>
-                                    <td>${pro.category_detail.cate_detail_name}</td>
-                                    <td><fmt:formatNumber>${pro.price}</fmt:formatNumber> đ</td>
-                                    <td><img src="${pro.image}" width="100"></td>
-                                    <td>
+                                    <td><span class="text-bold">name:</span> ${pro.product_name}<br>
                                         <c:if test="${pro.status ==1}">
-                                            <span class="badge badge-success">Show</span>
+                                            <span class="text-bold">status:</span><span class="badge badge-success"> Show</span>
                                         </c:if>
                                         <c:if test="${pro.status !=1}">
-                                            <span class="badge badge-danger">Hidden</span>
+                                            <span class="text-bold">status:</span><span class="badge badge-danger"> Hidden</span>
                                         </c:if>
+                                        <br><span class="text-bold">created:</span> ${pro.created}
                                     </td>
+                                    <td>${pro.category_detail.cate_detail_name}</td>
+                                    <td><fmt:formatNumber>${pro.price}</fmt:formatNumber> $</td>
+                                    <td><img src="${pro.image}" width="100"></td>
                                     <td class="project-actions ">
                                         <a href="${pageContext.request.contextPath}/admin/product/detailPro?id=${pro.product_id}" class="btn btn-primary btn-sm"><i class="fas fa-folder"> </i>Detail</a>
                                         <a href="${pageContext.request.contextPath}/admin/product/deleteProducts?id=${pro.product_id}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
@@ -98,7 +105,6 @@
 
 <%@include file="/WEB-INF/views/layout/admin/footer.jsp" %>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
 <%@include file="/WEB-INF/views/layout/admin/infoActionc.jsp" %>
 
 </body>

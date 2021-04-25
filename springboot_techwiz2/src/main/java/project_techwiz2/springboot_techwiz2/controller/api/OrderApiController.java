@@ -46,6 +46,29 @@ public class OrderApiController {
         return orders;
     }
 
+    @RequestMapping(path = "/status")
+    public ResponseEntity<?> updateStatus(@PathVariable(value = "order_id")Integer order_id,@PathVariable(value = "status")Integer status)
+    {
+        try {
+            Orders orders = orderRepository.findById(order_id).get();
+            if (orders.getStatus()==1)
+            {
+                ErrorDetails errorDetails = new ErrorDetails();
+                errorDetails.setTimestamp(new Date());
+                errorDetails.setMessage("Status value invalid  ");
+                return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+            }
+            orders.setUpdated(new Date());
+            orders.setStatus(status);
+            orderRepository.save(orders);
+            return new ResponseEntity<Orders>(orders,HttpStatus.OK);
+        }catch (NoSuchElementException e)
+        {}
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setTimestamp(new Date());
+        errorDetails.setMessage("Update Status unsuccessful");
+        return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.NOT_FOUND);
+    }
 
     @RequestMapping(path = "",method = RequestMethod.POST)
     public ResponseEntity<?> saveOrder(@Valid @RequestBody Orders orders)

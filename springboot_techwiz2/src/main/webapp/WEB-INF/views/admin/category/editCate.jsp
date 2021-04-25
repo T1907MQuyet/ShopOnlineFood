@@ -48,11 +48,11 @@
                                 <label for="exampleInputEmail1">Trạng thái:</label>
                                 <div class="custom-control custom-radio">
                                     <f:radiobutton class="custom-control-input" path="status" value="1"  id="customRadio1" />
-                                    <label for="customRadio1" class="custom-control-label">Hidden</label>
+                                    <label for="customRadio1" class="custom-control-label">Show</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <f:radiobutton class="custom-control-input" path="status" value="2" id="customRadio2" />
-                                    <label for="customRadio2" class="custom-control-label">Show</label>
+                                    <label for="customRadio2" class="custom-control-label">Hidden</label>
                                 </div>
                             </div>
                             <!-- /.card-body -->

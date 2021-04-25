@@ -19,6 +19,9 @@ public class Orders {
     @NotEmpty(message = "address must not empty")
     private String order_address;
 
+    @NotEmpty(message = "phone number must not empty")
+    private String phone_number;
+
     private String order_note;
     private int status;
     @NotEmpty(message = "Payment  must not empty")
@@ -138,5 +141,13 @@ public class Orders {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 }

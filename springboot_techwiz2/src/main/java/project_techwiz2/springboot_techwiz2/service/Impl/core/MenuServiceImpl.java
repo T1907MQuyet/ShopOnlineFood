@@ -40,6 +40,18 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public List<Menu> listMenuByStatus(int status) {
+        try{
+            List<Menu> list = menuRepository.findAllByStatus(status);
+            return list;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public boolean saveMenu(Menu menu) {
         try{
             menuRepository.save(menu);

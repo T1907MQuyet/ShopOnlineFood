@@ -101,7 +101,7 @@ public class CategoryDetailController {
     public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model, Category_detail category_detail)
     {
         int pageSize = 10;
-        List<Category> listCate = categoryService.lisCategories();
+        List<Category> listCate = categoryService.listCateByStatus(1);
         Page<Category_detail> page = categoryDetailService.findPaginated(pageNo,pageSize);
         List<Category_detail> listCategory = page.getContent();
         model.addAttribute("currentPage",pageNo);

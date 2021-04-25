@@ -51,7 +51,7 @@ public class ProductController {
     public String insertPro(Model model)
     {
         Product product = new Product();
-        List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
+        List<Category_detail> listCateDetail = categoryDetailService.listCateDetailStatus(1);
         model.addAttribute("proNew",product);
         model.addAttribute("listCateDetail",listCateDetail);
         return "admin/product/insertProduct";
@@ -82,7 +82,7 @@ public class ProductController {
     public String editPro(@RequestParam("id")Integer id,Model model)
     {
         Product product = productService.getProById(id);
-        List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
+        List<Category_detail> listCateDetail = categoryDetailService.listCateDetailStatus(1);
         model.addAttribute("proEdit",product);
         model.addAttribute("listCateDetail",listCateDetail);
         return "admin/product/editProduct";

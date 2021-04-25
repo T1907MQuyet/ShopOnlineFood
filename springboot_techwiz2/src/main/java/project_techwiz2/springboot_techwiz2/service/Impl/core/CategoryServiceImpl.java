@@ -31,6 +31,18 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> listCateByStatus(int status) {
+        try{
+            List<Category> list = categoryRepository.findAllByStatus(status);
+            return list;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Category getCateById(int cate_id) {
         try{
             Category category = categoryRepository.findById(cate_id).get();

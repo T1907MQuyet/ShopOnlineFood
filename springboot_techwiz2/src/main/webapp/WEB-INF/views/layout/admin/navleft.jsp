@@ -8,7 +8,7 @@
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -36,56 +36,40 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link"><i class="nav-icon fas fa-th"></i><p>Category<i class="right fas fa-angle-left"></i></p></a>
+            <a href="#" class="nav-link"><i class="nav-icon fas fa-th"></i><p>Category Website<i class="right fas fa-angle-left"></i></p></a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/admin/category" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Category Manager</p></a>
               </li>
               <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/admin/category" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Category Detail Manager</p></a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Inline</p></a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/admin/category" class="nav-link"><i class="nav-icon fas fa-th"></i><p>Category</p></a>
-          </li>
-          <li class="nav-item has-treeview">
-            <a class="nav-link"><i class="nav-icon fas fa-copy"></i><p>Parameter<i class="fas fa-angle-left right"></i></p></a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/admin/publishingCompany" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Publishing Company</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/admin/publishHouse" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Publishing House</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/admin/ds" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Detailed Specifications</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/admin/author" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Author</p>
-                </a>
+                <a href="${pageContext.request.contextPath}/admin/categoryDetail" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Category Detail Manager</p></a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="${pageContext.request.contextPath}/admin/product" class="nav-link">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-copy"></i><p>Menu Website<i class="right fas fa-angle-left"></i></p></a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="${pageContext.request.contextPath}/admin/menu" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Menu Manager</p></a>
+            </li>
+            <li class="nav-item">
+              <a href="${pageContext.request.contextPath}/admin/menuDetail" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Menu Detail Manager</p></a>
+            </li>
+          </ul>
+        </li>
+          <li class="nav-item has-treeview">
+          <a href="${pageContext.request.contextPath}/admin/product" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Product Manager
+            </p>
+          </a>
+        </li>
+          <li class="nav-item has-treeview">
+            <a href="${pageContext.request.contextPath}/admin/customer" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                Product Manager
+                Customer Manager
               </p>
             </a>
           </li>

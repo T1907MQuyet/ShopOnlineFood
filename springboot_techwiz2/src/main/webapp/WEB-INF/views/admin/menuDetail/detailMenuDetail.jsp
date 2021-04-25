@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="pageTitle" scope="request" value="Category Manager"/>
+<c:set var="pageTitle" scope="request" value="Menu Detail Manager"/>
 <%@include file="/WEB-INF/views/layout/admin/header.jsp" %>
 
 <div class="content-wrapper">
@@ -142,8 +142,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
+                <label>Category:</label>
                 <select class="custom-select" id="selectCateDetail">
                     <c:forEach items="${listCateDetail}"  var="cateDetail">
                         <option value="${cateDetail.cate_detail_id}">${cateDetail.cate_detail_name}</option>

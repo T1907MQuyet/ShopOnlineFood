@@ -177,7 +177,7 @@ public class MenuDetailController {
     public String findPaginated(@PathVariable(value = "pageNo")int pageNo, Model model, Menu_detail menu_detail)
     {
         int pageSize = 10;
-        List<Menu> listMenu = menuService.lisMenus();
+        List<Menu> listMenu = menuService.listMenuByStatus(1);
         Page<Menu_detail> page = menuDetailService.findPaginated(pageNo,pageSize);
         List<Menu_detail> listMenuDetail = page.getContent();
         model.addAttribute("currentPage",pageNo);

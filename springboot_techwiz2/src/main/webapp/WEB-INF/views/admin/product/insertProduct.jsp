@@ -71,7 +71,14 @@
                                 <spring:bind path="priority">
                                     <div class="form-group col-md-6">
                                         <label >Priority:</label>
-                                        <f:input path="priority" type="number" class="form-control ${status.error ?'border border-danger':''}" placeholder="Enter priority..."/>
+<%--                                        <f:input path="priority" type="number" class="form-control ${status.error ?'border border-danger':''}" placeholder="Enter priority..."/>--%>
+                                        <f:select path="priority" class="custom-select">
+                                            <f:option value="5">Default</f:option>
+                                            <f:option value="4">Top 4</f:option>
+                                            <f:option value="3">Top 3</f:option>
+                                            <f:option value="2">Top 2</f:option>
+                                            <f:option value="1">Top 1</f:option>
+                                        </f:select>
                                         <f:errors path="priority" class="text-danger"  ></f:errors>
                                     </div>
                                 </spring:bind>

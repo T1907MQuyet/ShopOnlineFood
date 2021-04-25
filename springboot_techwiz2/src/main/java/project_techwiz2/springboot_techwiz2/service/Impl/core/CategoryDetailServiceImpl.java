@@ -29,6 +29,18 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
     }
 
     @Override
+    public List<Category_detail> listCateDetailStatus(int status) {
+        try{
+            List<Category_detail> list = categoryDetailRepository.findAllByStatus(status);
+            return list;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Category_detail getCateDetailById(int cate_id) {
         try{
             Category_detail category_detail = categoryDetailRepository.findById(cate_id).get();
