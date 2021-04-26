@@ -13,6 +13,23 @@ public interface OrderRepository extends JpaRepository<Orders,Integer> {
     @Query("SELECT c FROM Orders c WHERE  customer_id = ?1")
     List<Orders> getByCustomerId(int customerId);
 
+    List<Orders> findAllByStatus(int status);
+
     @Query("SELECT o FROM Orders o ORDER BY status ASC ")
     Page<Orders> findPaginateOrder(Pageable pageable);
+
+    @Query("SELECT o FROM Orders o WHERE status = 1 ORDER BY created ASC ")
+    Page<Orders> findPagiOrderWatting(Pageable pageable);
+
+    @Query("SELECT o FROM Orders o WHERE status = 2 ORDER BY updated ASC ")
+    Page<Orders> findPagiOrderConfirmed(Pageable pageable);
+
+    @Query("SELECT o FROM Orders o WHERE status = 3 ORDER BY updated ASC ")
+    Page<Orders> findPagiOrderShipping(Pageable pageable);
+
+    @Query("SELECT o FROM Orders o WHERE status = 4 ORDER BY updated ASC ")
+    Page<Orders> findPagiOrderComplete(Pageable pageable);
+
+    @Query("SELECT o FROM Orders o WHERE status = 5 ORDER BY updated ASC ")
+    Page<Orders> findPagiOrderCancelled(Pageable pageable);
 }

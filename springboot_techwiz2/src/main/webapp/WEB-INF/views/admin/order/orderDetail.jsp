@@ -32,7 +32,7 @@
                             <div class="card card-info">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        Thông Tin Đơn Hàng:
+                                        Orders Information:
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -100,43 +100,39 @@
                                                 <input type="hidden" name="orderId" value="${order.orderId}"/>
                                                 <!-- select -->
                                                 <div class="form-group">
-                                                    <label>Cập Nhật Trạng Thái Đơn Hàng:</label>
+                                                    <label>Update Status Oredr:</label>
                                                     <f:select class="form-control" name="status" path="status">
                                                         <c:if test="${order.status ==1}">
-                                                            <f:option value="1">Đang Chờ</f:option>
-                                                            <f:option value="2">Đã Xác Nhận</f:option>
-                                                            <f:option value="3">Đang Vận Chuyển</f:option>
-                                                            <f:option value="4">Đã Hoàn Thành</f:option>
-                                                            <f:option value="5">Bị Hủy</f:option>
+                                                            <f:option value="1">Waiting</f:option>
+                                                            <f:option value="2">Confirmed</f:option>
+                                                            <f:option value="3">Shipping</f:option>
+                                                            <f:option value="4">Complete</f:option>
+                                                            <f:option value="5">Cancelled</f:option>
                                                         </c:if>
                                                         <c:if test="${order.status ==2}">
-                                                            <f:option value="2">Đã Xác Nhận</f:option>
-                                                            <f:option value="3">Đang Vận Chuyển</f:option>
-                                                            <f:option value="4">Đã Hoàn Thành</f:option>
-                                                            <f:option value="5">Bị Hủy</f:option>
+                                                            <f:option value="2">Confirmed</f:option>
+                                                            <f:option value="3">Shipping</f:option>
+                                                            <f:option value="4">Complete</f:option>
+                                                            <f:option value="5">Cancelled</f:option>
                                                         </c:if>
                                                         <c:if test="${order.status ==3}">
-                                                            <f:option value="3">Đang Vận Chuyển</f:option>
-                                                            <f:option value="4">Đã Hoàn Thành</f:option>
-                                                            <f:option value="5">Bị Hủy</f:option>
+                                                            <f:option value="3">Shipping</f:option>
+                                                            <f:option value="4">Complete</f:option>
+                                                            <f:option value="5">Cancelled</f:option>
                                                         </c:if>
                                                         <c:if test="${order.status ==4}">
-
-                                                            <f:option value="4">Đã Hoàn Thành</f:option>
-
+                                                            <f:option value="4">Complete</f:option>
                                                         </c:if>
                                                         <c:if test="${order.status ==5}">
-
-                                                            <f:option value="5">Bị Hủy</f:option>
+                                                            <f:option value="5">Cancelled</f:option>
                                                         </c:if>
-
                                                     </f:select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </f:form>
                             </div>
@@ -150,20 +146,19 @@
                                 <div class="card card-info ">
                                     <div class="card-header">
                                         <div class="card-title">
-                                            Chi tiết Đơn Hàng
+                                            Orders Detail
                                         </div>
-
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>
-                                                <th>Ảnh Sản Phẩm</th>
-                                                <th>Tên Sản Phẩm</th>
-                                                <th>Số Lượng</th>
-                                                <th>Loại Sản Phẩm</th>
-                                                <th>Giá Bán</th>
+                                                <th>Product image</th>
+                                                <th>Product name</th>
+                                                <th>Quantity</th>
+                                                <th>Category</th>
+                                                <th>Price</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -184,16 +179,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="Row">
-
-
-
-                </div>
-
-
             </div>
 
         </div>

@@ -103,4 +103,16 @@ public class ProductServiceImpl implements ProductService {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.productRepository.findPaginateProductStatus(pageable);
     }
+
+    @Override
+    public Page<Product> findPaginatedShow(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.productRepository.findPaginateProStatusShow(pageable);
+    }
+
+    @Override
+    public Page<Product> findPaginatedHidden(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.productRepository.findPaginateProStatusHidden(pageable);
+    }
 }

@@ -33,7 +33,7 @@ public class OrderController {
     @RequestMapping(path = "")
     public String getAllOrder(Model model)
     {
-        return findPaginated(1,model);
+        return findPaginated(1,0,model);
     }
 
     @RequestMapping(path = "detailOrder")
@@ -61,15 +61,48 @@ public class OrderController {
         return "redirect:/admin/order/detailOrder?id="+orderId+"&&error=Update order status failed";
     }
 
-    @RequestMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+    @RequestMapping("/page/{pageNo}/{status}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,@PathVariable(value = "status") int status, Model model) {
         int pageSize = 10;
-        Page<Orders> page = orderService.findPaginated(pageNo, pageSize);
+        Page<Orders> page = null;
+      switch (status)
+      {
+          case 1:
+              page = orderService.findPagiWatting(pageNo, pageSize);
+              break;
+          case 2:
+              page = orderService.findPagiConfirmed(pageNo, pageSize);
+              break;
+          case 3:
+              page = orderService.findPagiShipping(pageNo, pageSize);
+              break;
+          case 4:
+              page = orderService.findPagiComplete(pageNo, pageSize);
+              break;
+          case 5:
+              page = orderService.findPagiCancelled(pageNo, pageSize);
+              break;
+          default:
+              page = orderService.findPaginated(pageNo, pageSize);
+
+      }
         List<Orders> listOrder = page.getContent();
         model.addAttribute("currentPage", pageNo);
+        model.addAttribute("status",status);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("list", listOrder);
+
+        int coutWatting = orderService.countOrderByStatus(1);
+        int coutConfirmed = orderService.countOrderByStatus(2);
+        int coutShipping = orderService.countOrderByStatus(3);
+        int coutComplete = orderService.countOrderByStatus(4);
+        int coutCancelled = orderService.countOrderByStatus(5);
+        model.addAttribute("coutWatting",coutWatting);
+        model.addAttribute("coutConfirmed",coutConfirmed);
+        model.addAttribute("coutShipping",coutShipping);
+        model.addAttribute("coutComplete",coutComplete);
+        model.addAttribute("coutCancelled",coutCancelled);
 
         return "admin/order/orderList";
     }
@@ -81,17 +114,17 @@ public class OrderController {
         switch(status)
         {
             case 1:
-                return "Đang Chờ";
+                return "Waiting";
             case 2:
-                return "Đã Xác Nhận";
+                return "Confirmed";
             case 3:
-                return "Đang Vận Chuyển";
+                return "Shipping";
             case 4:
-                return "Đã Hoàn Thành";
+                return "Complete";
             case 5:
-                return "Đã Hủy";
+                return "Cancelled";
             default:
-                return "Không Hợp Lệ";
+                return "Null";
         }
     }
 

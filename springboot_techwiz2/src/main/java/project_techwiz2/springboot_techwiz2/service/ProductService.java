@@ -7,10 +7,14 @@ import java.util.List;
 
 public interface ProductService {
     List<Product> listProduct();
+
     Product getProById(int pro_id);
     boolean saveProduct(Product product);
     boolean deleteProduct(int pro_id);
     boolean updateProduct(Product product);
     List<Product> lisProByCateDetail(int cate_id);
     Page<Product> findPaginated(int pageNo,int pageSize);
+    Page<Product> findPaginatedShow(int pageNo,int pageSize);
+    Page<Product> findPaginatedHidden(int pageNo,int pageSize);
+
 }

@@ -57,8 +57,45 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public int countOrderByStatus(int status) {
+        List<Orders> list = orderRepository.findAllByStatus(status);
+        int count = list.size();
+        return count;
+    }
+
+    @Override
     public Page<Orders> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.orderRepository.findPaginateOrder(pageable);
+    }
+
+    @Override
+    public Page<Orders> findPagiWatting(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.orderRepository.findPagiOrderWatting(pageable);
+    }
+
+    @Override
+    public Page<Orders> findPagiConfirmed(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.orderRepository.findPagiOrderConfirmed(pageable);
+    }
+
+    @Override
+    public Page<Orders> findPagiShipping(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.orderRepository.findPagiOrderShipping(pageable);
+    }
+
+    @Override
+    public Page<Orders> findPagiComplete(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.orderRepository.findPagiOrderComplete(pageable);
+    }
+
+    @Override
+    public Page<Orders> findPagiCancelled(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo-1,pageSize);
+        return this.orderRepository.findPagiOrderCancelled(pageable);
     }
 }

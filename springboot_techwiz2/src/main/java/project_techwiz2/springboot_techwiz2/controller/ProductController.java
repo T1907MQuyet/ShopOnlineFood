@@ -47,6 +47,18 @@ public class ProductController {
         return findPaginated(1,model);
     }
 
+    @RequestMapping("show")
+    public String getProShow(Model model)
+    {
+        return findPagShow(1,model);
+    }
+
+    @RequestMapping("hidden")
+    public String getProHidden(Model model)
+    {
+        return findPagHidden(1,model);
+    }
+
     @RequestMapping("/insertProduct")
     public String insertPro(Model model)
     {
@@ -133,6 +145,38 @@ public class ProductController {
         int pageSize = 10;
         List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
         Page<Product> page = productService.findPaginated(pageNo,pageSize);
+        List<Product> listProduct = page.getContent();
+        model.addAttribute("currentPage",pageNo);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("list",listProduct);
+        model.addAttribute("listCateDetail",listCateDetail);
+
+
+        return "admin/product/productList";
+    }
+    @RequestMapping("/pageShow/{pageNo}")
+    public String findPagShow(@PathVariable(value = "pageNo")int pageNo, Model model)
+    {
+        int pageSize = 10;
+        List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
+        Page<Product> page = productService.findPaginatedShow(pageNo,pageSize);
+        List<Product> listProduct = page.getContent();
+        model.addAttribute("currentPage",pageNo);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("totalItems",page.getTotalElements());
+        model.addAttribute("list",listProduct);
+        model.addAttribute("listCateDetail",listCateDetail);
+
+
+        return "admin/product/productList";
+    }
+    @RequestMapping("/pageHidden/{pageNo}")
+    public String findPagHidden(@PathVariable(value = "pageNo")int pageNo, Model model)
+    {
+        int pageSize = 10;
+        List<Category_detail> listCateDetail = categoryDetailService.lisCategoryDetails();
+        Page<Product> page = productService.findPaginatedHidden(pageNo,pageSize);
         List<Product> listProduct = page.getContent();
         model.addAttribute("currentPage",pageNo);
         model.addAttribute("totalPages",page.getTotalPages());
