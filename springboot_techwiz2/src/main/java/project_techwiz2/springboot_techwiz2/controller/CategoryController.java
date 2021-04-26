@@ -40,6 +40,11 @@ public class CategoryController {
         if (result.hasErrors()) {
             return findPaginated(1, model, category);
         }
+        boolean checkCateName = categoryService.checkCateName(category.getCate_name());
+        if (checkCateName==false)
+        {
+            return "redirect:/admin/category?errorcatename=CategoryName is existed";
+        }
         category.setCreated(new Date());
         boolean bl = categoryService.saveCate(category);
         if (bl) {
@@ -58,6 +63,12 @@ public class CategoryController {
 
     @RequestMapping(path = "updateCategory", method = RequestMethod.POST)
     public String updateCategory(@ModelAttribute("cateEdit") Category category) {
+
+        boolean checkName = checkCateNameEdit(category.getCate_name(),category.getCate_id());
+        if (checkName==false)
+        {
+            return "redirect:/admin/category/editCate?id="+category.getCate_id()+"&&errorcatename=CategoryName is existed";
+        }
         boolean bl = categoryService.updateCate(category);
         if (bl) {
             return "redirect:/admin/category?success=Update category success";
@@ -86,6 +97,25 @@ public class CategoryController {
         model.addAttribute("cateNew", category);
         return "admin/category/cateList";
     }
+
+
+    public boolean checkCateNameEdit(String cate_name,int cate_id)
+    {
+        Category cateEdit = categoryService.getCateById(cate_id);
+        boolean checkCateName = categoryService.checkCateName(cate_name);
+        if (checkCateName==false)
+        {
+            if (cate_name.equals(cateEdit.getCate_name()))
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
 }

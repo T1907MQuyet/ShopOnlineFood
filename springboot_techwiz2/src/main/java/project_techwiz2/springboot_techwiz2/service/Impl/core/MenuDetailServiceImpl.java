@@ -79,6 +79,17 @@ public class MenuDetailServiceImpl implements MenuDetailService {
     }
 
     @Override
+    public boolean checkMenuDetailName(String menuDName, int menu_id) {
+        Menu_detail menu_detail = menuDetailRepository.findByMenuDetailName(menuDName,menu_id);
+        if (menu_detail==null)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
     public Page<Menu_detail> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.menuDetailRepository.findPaginateMenuStatus(pageable);

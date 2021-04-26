@@ -95,6 +95,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public boolean checkCateName(String cate_name) {
+        Category category = categoryRepository.findByCate_name(cate_name);
+        if (category==null)
+        {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
     public Page<Category> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize,Sort.by("status"));
         return this.categoryRepository.findPaginateCateStatus(pageable);

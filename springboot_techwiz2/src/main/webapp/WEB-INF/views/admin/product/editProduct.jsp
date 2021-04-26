@@ -35,7 +35,8 @@
                             <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleInputEmail1">Product Name:</label>
-                                        <f:input path="product_name" type="text"  class="form-control " placeholder="Enter product name"/>
+                                        <f:input path="product_name" type="text"  class="form-control ${param.errorcatename !=null ?'border border-danger':''}" placeholder="Enter product name"/>
+                                        <p class="text-danger">${param.errorcatename}</p>
                                     </div>
                                 <div class="form-group col-md-6">
                                     <label>Category:</label>

@@ -43,6 +43,12 @@ public class MenuController {
         {
             return findPaginated(1,model,menu);
         }
+        boolean checkMenuName = menuService.checkMenuName(menu.getMenu_name());
+        if (checkMenuName==false)
+        {
+            return "redirect:/admin/menu?errorcatename=Menu name is existed&&menu="+menu.getMenu_name();
+        }
+
         menu.setCreated(new Date());
         menu.setUpdated(new Date());
         boolean bl = menuService.saveMenu(menu);
@@ -64,6 +70,11 @@ public class MenuController {
     @RequestMapping(path = "updateMenu",method = RequestMethod.POST)
     public String updateMenu(@ModelAttribute("menuEdit")Menu menu)
     {
+        boolean checkName = checkMenuNameEdit(menu.getMenu_name(),menu.getMenu_id());
+        if (checkName==false)
+        {
+            return "redirect:/admin/menu/editMenu?id="+menu.getMenu_id()+"&&errorcatename=Menu is existed&&menu="+menu.getMenu_name();
+        }
         menu.setUpdated(new Date());
         boolean bl = menuService.updateMenu(menu);
         if (bl)
@@ -96,6 +107,23 @@ public class MenuController {
         model.addAttribute("list",listMenu);
         model.addAttribute("menuNew",menu);
         return "admin/menu/menuList";
+    }
+
+    public boolean checkMenuNameEdit(String menu_name,int menu_id)
+    {
+        Menu menuEdit = menuService.getMenyById(menu_id);
+        boolean checkMenuName = menuService.checkMenuName((menu_name));
+        if (checkMenuName==false)
+        {
+            if (menu_name.equals(menuEdit.getMenu_name()))
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
 
 

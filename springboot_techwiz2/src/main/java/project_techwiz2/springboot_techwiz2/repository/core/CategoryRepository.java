@@ -11,6 +11,9 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
     List<Category> findAllByStatus(int status);
 
+    @Query("SELECT c FROM Category c WHERE cate_name = ?1")
+    Category findByCate_name(String cate_name);
+
     @Query("SELECT c FROM Category c WHERE status = 1 OR status = 2")
     List<Category> findActiveCateStatus();
 

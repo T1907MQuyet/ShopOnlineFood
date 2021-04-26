@@ -29,4 +29,7 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
     @Query("SELECT p FROM Product p WHERE status = 2 ")
     Page<Product> findPaginateProStatusHidden(Pageable pageable);
 
+    @Query("SELECT p FROM Product p WHERE product_name = ?1 AND cate_detail_id = ?2")
+    Product findByProName(String proName,int cateDetail_id);
+
 }

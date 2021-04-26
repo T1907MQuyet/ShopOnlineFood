@@ -34,8 +34,9 @@
                                 <spring:bind path="product_name">
                                 <div class="form-group col-md-6">
                                     <label for="exampleInputEmail1">Product Name:</label>
-                                    <f:input path="product_name" type="text"  class="form-control ${status.error ?'border border-danger':''}" placeholder="Enter product name"/>
+                                    <f:input path="product_name" type="text"  class="form-control ${status.error ?'border border-danger':''} ${param.errorcatename !=null ?'border border-danger':''}" placeholder="Enter product name"/>
                                     <f:errors path="product_name" class="text-danger"  ></f:errors>
+                                    <p class="text-danger">${param.errorcatename}</p>
                                 </div>
                                 </spring:bind>
                                 <div class="form-group col-md-6">
@@ -89,6 +90,7 @@
                                 <div class="form-group col-md-12">
                                     <label >Description:</label>
                                     <f:textarea path="descriptions" style="height:500px" type="text" class="form-control" id="desId" placeholder="Enter Open Time"/>
+                                    <f:errors path="descriptions" class="text-danger"  ></f:errors>
                                 </div>
                             </div>
                         </div>

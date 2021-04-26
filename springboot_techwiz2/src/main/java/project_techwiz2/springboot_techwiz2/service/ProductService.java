@@ -17,4 +17,6 @@ public interface ProductService {
     Page<Product> findPaginatedShow(int pageNo,int pageSize);
     Page<Product> findPaginatedHidden(int pageNo,int pageSize);
 
+    boolean checkProName(String pro_name,int cate_detail_id);
+
 }

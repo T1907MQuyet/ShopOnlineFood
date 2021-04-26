@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="pageTitle" scope="request" value="Category Manager"/>
+<c:set var="pageTitle" scope="request" value="Menu Manager"/>
 <%@include file="/WEB-INF/views/layout/admin/header.jsp" %>
     <div class="content-wrapper">
     <section class="content-header">
@@ -104,8 +104,9 @@
         <spring:bind path="menu_name">
             <div class="form-group">
             <label for="exampleInputEmail1">Category name:</label>
-            <f:input path="menu_name" type="text"  class="form-control  ${status.error ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Enter category name..."/>
+            <f:input path="menu_name" type="text"  class="form-control  ${status.error ?'border border-danger':''} ${param.errorcatename !=null ?'border border-danger':''}" id="exampleInputEmail1"   placeholder="Enter category name..."/>
             <f:errors path="menu_name" class="text-danger"  ></f:errors>
+            <p class="text-danger">${param.errorcatename}</p>
             </div>
         </spring:bind>
         <spring:bind path="status">

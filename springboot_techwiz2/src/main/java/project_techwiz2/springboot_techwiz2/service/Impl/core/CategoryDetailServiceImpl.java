@@ -91,6 +91,17 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
     }
 
     @Override
+    public boolean checkCateDetailName(String cate_detail_nem,int cate_id) {
+        Category_detail category_detail = categoryDetailRepository.findByCateDetailName(cate_detail_nem,cate_id);
+        if (category_detail==null)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
     public Page<Category_detail> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.categoryDetailRepository.findPaginateCateStatus(pageable);

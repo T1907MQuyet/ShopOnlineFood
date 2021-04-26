@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản Lý Role</h1>
+                    <h1>Role Manager</h1>
                     <c:if test="${param.success != null}">
                         <div class="alert alert-success" role="alert">
                             thanh cong
@@ -23,8 +23,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a >Trang Chủ</a></li>
-                        <li class="breadcrumb-item active">Quản Lý Role</li>
+                        <li class="breadcrumb-item"><a >Home</a></li>
+                        <li class="breadcrumb-item active">Role Manager</li>
                     </ol>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh Sách Role</h3>
+                        <h3 class="card-title">Role List</h3>
 
                     </div>
                     <!-- /.card-header -->
@@ -43,8 +43,8 @@
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
-                                <th style="width: 10px">STT</th>
-                                <th>Tên Role</th>
+                                <th style="width: 10px">No.</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -54,8 +54,8 @@
                                     <td>${offset+itr.index+1}</td>
                                     <td>${role.name }</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/admin/category/editCate?id=${role.id}" class="btn  btn-info btn-sm"><i class="fas fa-pencil-alt"> </i> Cập Nhật</a>
-                                        <a href="${pageContext.request.contextPath}/admin/category/deleteCate?id=${role.id}" class="btn  btn-danger btn-sm"><i class="fas fa-trash"> </i> Xóa</a>
+                                        <a href="" class="btn  btn-info btn-sm"><i class="fas fa-pencil-alt"> </i> Edit</a>
+                                        <a href="" class="btn  btn-danger btn-sm"><i class="fas fa-trash"> </i> Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -91,7 +91,7 @@
                 <!-- general form elements -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Thêm Mới Role!</h3>
+                        <h3 class="card-title">Add New Role!</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                                 <i class="fas fa-minus"></i></button>
@@ -102,14 +102,14 @@
                         <!-- form start -->
                         <f:form action="${pageContext.request.contextPath}/admin/role/saveRole" method="POST" modelAttribute="roleNew">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên Role:</label>
+                            <label for="exampleInputEmail1">Role Name:</label>
                             <f:input path="name" type="text"  class="form-control" id="exampleInputEmail1" required="true" placeholder="Nhập Tên Danh mục..."/>
                         </div>
 
 
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Thêm Mới</button>
+                                <button type="submit" class="btn btn-info">Add New</button>
                             </div>
                             </f:form>
                     </div>

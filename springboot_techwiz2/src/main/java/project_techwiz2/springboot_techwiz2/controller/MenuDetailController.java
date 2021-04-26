@@ -53,6 +53,12 @@ public class MenuDetailController {
         {
             return  findPaginated(1,model,menu_detail);
         }
+        boolean checkMenuDetailName = menuDetailService.checkMenuDetailName(menu_detail.getMenu_detail_name(),menu_detail.getMenu().getMenu_id());
+        if (checkMenuDetailName==false)
+        {
+            return "redirect:/admin/menuDetail?errorcatename=Menu name is existed";
+        }
+
         menu_detail.setCreated(new Date());
         menu_detail.setUpdated(new Date());
 
@@ -90,6 +96,11 @@ public class MenuDetailController {
     @RequestMapping(path = "/updateMenuDetail",method = RequestMethod.POST)
     public String updateMenuDetail(@ModelAttribute("menDetailEdit")Menu_detail menu_detail)
     {
+        boolean checkName = checkMenuDetailNameEdit(menu_detail.getMenu_detail_name(),menu_detail.getMenu_detail_id(),menu_detail.getMenu().getMenu_id());
+        if (checkName==false)
+        {
+            return "redirect:/admin/menuDetail/editMenuDetail?id="+menu_detail.getMenu_detail_id()+"&&errorcatename=Menu name is existed";
+        }
         menu_detail.setUpdated(new Date());
         boolean bl = menuDetailService.updateMenu(menu_detail);
         if (bl)
@@ -187,6 +198,24 @@ public class MenuDetailController {
         model.addAttribute("menuDetailNew",menu_detail);
         model.addAttribute("listMenu",listMenu);
         return "admin/menuDetail/menuDetailList";
+    }
+
+    public boolean checkMenuDetailNameEdit(String menuDName,int id,int menu_id)
+    {
+        Menu_detail menu_detail = menuDetailService.getMenuDetailById(id);
+        boolean checkMenuDetailName = menuDetailService.checkMenuDetailName(menuDName,menu_id);
+        if (checkMenuDetailName==false)
+        {
+            if (menuDName.equals(menu_detail.getMenu_detail_name()) && menu_detail.getMenu().getMenu_id()==menu_id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 

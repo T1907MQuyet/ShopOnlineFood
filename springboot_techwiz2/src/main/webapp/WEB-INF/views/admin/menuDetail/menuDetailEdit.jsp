@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<c:set var="pageTitle" scope="request" value="Category Manager"/>
+<c:set var="pageTitle" scope="request" value="Menu Detail Manager"/>
 <%@include file="/WEB-INF/views/layout/admin/header.jsp" %>
 
 <div class="content-wrapper">
@@ -42,8 +42,9 @@
                             <f:input path="created" type="hidden"/>
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <f:input path="menu_detail_name" type="text"  class="form-control " id="exampleInputEmail1"  placeholder="Name"/>
-                                </div>
+                                    <f:input path="menu_detail_name" type="text"  class="form-control ${param.errorcatename !=null ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Name"/>
+                                <p class="text-danger">${param.errorcatename}</p>
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Menu</label>
                                 <f:select cssClass="custom-select" path="menu.menu_id">
@@ -63,7 +64,7 @@
                                 </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Create</button>
+                                <button type="submit" class="btn btn-info">Update</button>
                             </div>
                         </f:form>
                     </div>

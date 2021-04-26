@@ -20,4 +20,7 @@ public interface CategoryDetailRepository extends JpaRepository<Category_detail,
     @Query("SELECT c FROM Category_detail c WHERE status = 1 OR status = 2")
     Page<Category_detail> findPaginateCateStatus(Pageable pageable);
 
+    @Query("SELECT c FROM Category_detail c WHERE cate_detail_name = ?1 AND cate_id = ?2")
+    Category_detail findByCateDetailName(String catename,int cate_id);
+
 }

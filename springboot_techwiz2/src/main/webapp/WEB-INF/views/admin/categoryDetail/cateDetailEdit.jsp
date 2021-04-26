@@ -45,8 +45,9 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
-                                <f:input path="cate_detail_name" type="text" class="form-control"
+                                <f:input path="cate_detail_name" type="text" class="form-control ${param.errorcatename !=null ?'border border-danger':''}"
                                          id="exampleInputEmail1" placeholder="Name"/>
+                                <p class="text-danger">${param.errorcatename}</p>
                             </div>
 
                             <div class="form-group">

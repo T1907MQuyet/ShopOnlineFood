@@ -50,6 +50,11 @@ public class CategoryDetailController {
         {
             return findPaginated(1,model,category_detail);
         }
+        boolean checkCateDetailName = categoryDetailService.checkCateDetailName(category_detail.getCate_detail_name(),category_detail.getCategory().getCate_id());
+        if (checkCateDetailName==false)
+        {
+            return "redirect:/admin/categoryDetail?errorcatename=CategoryName is existed";
+        }
         category_detail.setCreated(new Date());
         category_detail.setUpdated(new Date());
 
@@ -74,6 +79,11 @@ public class CategoryDetailController {
     @RequestMapping(path = "/updateCateDetail",method = RequestMethod.POST)
     public String updateCateDetail(@ModelAttribute("cateDetailEdit")Category_detail category_detail)
     {
+        boolean checkName = checkCateDetailNameEdit(category_detail.getCate_detail_name(),category_detail.getCate_detail_id(),category_detail.getCategory().getCate_id());
+        if (checkName==false)
+        {
+            return "redirect:/admin/categoryDetail/editCateDetail?id="+category_detail.getCate_detail_id()+"&&errorcatename=CategoryName is existed";
+        }
         category_detail.setUpdated(new Date());
         boolean bl = categoryDetailService.updateCate(category_detail);
         if (bl)
@@ -111,5 +121,22 @@ public class CategoryDetailController {
         model.addAttribute("cateDetailNew",category_detail);
         model.addAttribute("listCate",listCate);
         return "admin/categoryDetail/cateDetailList";
+    }
+
+    public boolean checkCateDetailNameEdit(String cate_detail_name, int id,int cate_id)
+    {
+        Category_detail category_detail = categoryDetailService.getCateDetailById(id);
+        boolean checkCateDetailName = categoryDetailService.checkCateDetailName(cate_detail_name,cate_id);
+        if (checkCateDetailName==false)
+        {
+            if (cate_detail_name.equals(category_detail.getCate_detail_name()) && category_detail.getCategory().getCate_id()==cate_id)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
 }

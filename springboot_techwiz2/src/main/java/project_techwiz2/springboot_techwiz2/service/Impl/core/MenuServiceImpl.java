@@ -90,6 +90,17 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public boolean checkMenuName(String menu_name) {
+        Menu menu = menuRepository.findByMenuName(menu_name);
+        if (menu==null)
+        {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
     public Page<Menu> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.menuRepository.findPaginateMenuStatus(pageable);

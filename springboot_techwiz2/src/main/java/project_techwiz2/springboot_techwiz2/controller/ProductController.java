@@ -79,6 +79,12 @@ public class ProductController {
             model.addAttribute("proNew",product);
             return "admin/product/insertProduct";
         }
+        boolean checkProName = productService.checkProName(product.getProduct_name(),product.getCategory_detail().getCate_detail_id());
+        if (checkProName==false)
+        {
+            return "redirect:/admin/product/insertProduct?errorcatename=Product Name is existed";
+        }
+
         Map resultCd = cdService.upload(multipartFile);
         ClImage clImage = new ClImage((String)resultCd.get("secure_url"));
         product.setImage(clImage.getUrl());
@@ -103,6 +109,13 @@ public class ProductController {
     @RequestMapping(value = "/updatePro",method = RequestMethod.POST)
     public String updatePro(@ModelAttribute("proEdit")Product product,Model model,@RequestParam("file_avatar") MultipartFile multipartFile)throws IOException
     {
+        boolean checkName = checkProNameEdit(product.getProduct_name(),product.getProduct_id(),product.getCategory_detail().getCate_detail_id());
+        if (checkName==false)
+        {
+            return "redirect:/admin/product/editPro?id="+product.getProduct_id()+"&&errorcatename=Product name is existed";
+        }
+
+
         Product proEdit = productService.getProById(product.getProduct_id());
         if (multipartFile.getSize()>0)
         {
@@ -184,6 +197,23 @@ public class ProductController {
         model.addAttribute("list",listProduct);
         model.addAttribute("listCateDetail",listCateDetail);
         return "admin/product/productList";
+    }
+
+    public boolean checkProNameEdit(String pro_name,int id,int cate_detail_id)
+    {
+        Product product = productService.getProById(id);
+        boolean checkProName = productService.checkProName(pro_name,cate_detail_id);
+        if (checkProName==false)
+        {
+            if (pro_name.equals(product.getProduct_name()) && product.getCategory_detail().getCate_detail_id()==cate_detail_id)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
 
 

@@ -108,8 +108,9 @@
                             <spring:bind path="cate_detail_name">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <f:input path="cate_detail_name" type="text"  class="form-control  ${status.error ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Name"/>
+                                    <f:input path="cate_detail_name" type="text"  class="form-control  ${status.error ?'border border-danger':''} ${param.errorcatename !=null ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Name"/>
                                     <f:errors path="cate_detail_name" class="text-danger"  ></f:errors>
+                                    <p class="text-danger">${param.errorcatename}</p>
                                 </div>
                             </spring:bind>
                                 <div class="form-group">

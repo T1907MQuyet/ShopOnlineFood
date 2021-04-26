@@ -12,5 +12,6 @@ public interface CategoryService {
     boolean saveCate(Category category);
     boolean updateCate(Category category);
     boolean deleteCate(int cate_id);
+    boolean checkCateName(String cate_name);
     Page<Category> findPaginated(int pageNo,int pageSize);
 }

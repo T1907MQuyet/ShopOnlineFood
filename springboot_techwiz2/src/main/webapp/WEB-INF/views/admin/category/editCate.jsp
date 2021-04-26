@@ -42,7 +42,8 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Category name:</label>
-                                <f:input path="cate_name" type="text"  class="form-control" id="exampleInputEmail1"  placeholder="Enter category name..."/>
+                                <f:input path="cate_name" type="text"  class="form-control ${param.errorcatename !=null ?'border border-danger':''}" id="exampleInputEmail1"  placeholder="Enter category name..."/>
+                                <p class="text-danger">${param.errorcatename}</p>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Trạng thái:</label>

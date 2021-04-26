@@ -94,15 +94,11 @@ public class CustomerApiController {
             }
             customerRepository.save(custUpdate);
             return new ResponseEntity<Customer>(custUpdate,HttpStatus.OK);
-        }catch (NoSuchElementException e)
-        {
-
-        }
+        }catch (NoSuchElementException e){}
         ErrorDetails errorDetails = new ErrorDetails();
         errorDetails.setTimestamp(new Date());
         errorDetails.setMessage("Update unsuccessful");
         return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.NOT_FOUND);
-
     }
 
     @RequestMapping(path = "/updatePassword",method = RequestMethod.POST)
@@ -125,7 +121,6 @@ public class CustomerApiController {
         {
             errorDetails.setMessage("Exception");
         }
-
         errorDetails.setTimestamp(new Date());
 
         return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.NOT_FOUND);
@@ -147,10 +142,7 @@ public class CustomerApiController {
                     }
                 }
             }
-        }catch (NoSuchElementException e)
-        {
-
-        }
+        }catch (NoSuchElementException e){}
         ErrorDetails errorDetails = new ErrorDetails();
         errorDetails.setTimestamp(new Date());
         errorDetails.setMessage("Account password incorrect");
@@ -163,8 +155,6 @@ public class CustomerApiController {
         Customer customer = customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("User not found with id :"+id));
         return customer;
     }
-
-
     //check email
     public boolean checkEmail(Customer customer)
     {

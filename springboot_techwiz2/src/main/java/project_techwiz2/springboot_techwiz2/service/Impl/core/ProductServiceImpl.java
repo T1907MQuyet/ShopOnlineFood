@@ -115,4 +115,15 @@ public class ProductServiceImpl implements ProductService {
         Pageable pageable = PageRequest.of(pageNo-1,pageSize);
         return this.productRepository.findPaginateProStatusHidden(pageable);
     }
+
+    @Override
+    public boolean checkProName(String pro_name, int cate_detail_id) {
+        Product product = productRepository.findByProName(pro_name,cate_detail_id);
+        if (product==null)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

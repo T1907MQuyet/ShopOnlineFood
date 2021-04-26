@@ -12,5 +12,7 @@ public interface MenuService {
     boolean saveMenu(Menu menu);
     boolean updateMenu(Menu menu);
     boolean deleteMenu(int menu_id);
+
+    boolean checkMenuName(String menu_name);
     Page<Menu> findPaginated(int pageNo,int pageSize);
 }

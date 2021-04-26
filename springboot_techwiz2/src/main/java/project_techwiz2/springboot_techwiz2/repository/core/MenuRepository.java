@@ -17,4 +17,7 @@ public interface MenuRepository extends JpaRepository<Menu,Integer> {
 
     @Query("SELECT c FROM Menu c WHERE status = 1 OR status = 2")
     Page<Menu> findPaginateMenuStatus(Pageable pageable);
+
+    @Query("SELECT m FROM Menu m WHERE  menu_name = ?1")
+    Menu findByMenuName(String menu_name);
 }

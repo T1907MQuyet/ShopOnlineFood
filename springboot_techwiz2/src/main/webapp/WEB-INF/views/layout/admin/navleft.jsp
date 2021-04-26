@@ -59,7 +59,7 @@
         </li>
           <li class="nav-item has-treeview">
           <a href="${pageContext.request.contextPath}/admin/product" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
+            <i class="nav-icon fas fa-table"></i>
             <p>
               Product Manager
             </p>
@@ -67,13 +67,31 @@
         </li>
           <li class="nav-item has-treeview">
             <a href="${pageContext.request.contextPath}/admin/customer" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Customer Manager
               </p>
             </a>
           </li>
-
+          <li class="nav-item has-treeview">
+          <a href="${pageContext.request.contextPath}/admin/order" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Orders Manager
+            </p>
+          </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link"><i class="nav-icon fas fa-tree"></i><p>Account Admin<i class="right fas fa-angle-left"></i></p></a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/admin/role" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Role Manager</p></a>
+              </li>
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/admin/roleUser" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Role User Manager</p></a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
