@@ -15,7 +15,6 @@ public class Feedbacks {
     private  int id;
 
     @NotEmpty(message = "fullname must not be empty")
-    @Min(1)
     private String fullname;
 
 
