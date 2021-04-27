@@ -91,10 +91,10 @@
                                     </td>
                                     <td><span class="text-bold">name:</span> ${pro.product_name}<br>
                                         <c:if test="${pro.status ==1}">
-                                            <span class="text-bold">status:</span><span class="badge badge-success"> Show</span>
+                                            <span class="text-bold">status:</span><span class="badge badge-success">Show</span>
                                         </c:if>
                                         <c:if test="${pro.status !=1}">
-                                            <span class="text-bold">status:</span><span class="badge badge-danger"> Hidden</span>
+                                            <span class="text-bold">status:</span><span class="badge badge-danger">Hidden</span>
                                         </c:if>
                                         <br><span class="text-bold">created:</span> ${pro.created}
                                     </td>

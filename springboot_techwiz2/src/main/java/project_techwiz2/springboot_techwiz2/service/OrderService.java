@@ -12,6 +12,8 @@ public interface OrderService {
 
     int countOrderByStatus(int status);
 
+    List<Orders> listOrderMonth(int month);
+
     Page<Orders> findPaginated(int pageNo, int pageSize);
 
     Page<Orders> findPagiWatting(int pageNo, int pageSize);

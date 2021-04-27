@@ -15,7 +15,7 @@ import project_techwiz2.springboot_techwiz2.service.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = {"/","/admin"})
+@RequestMapping(path = "/")
 public class AdminController {
     @Autowired
     UserService userService;
@@ -23,11 +23,11 @@ public class AdminController {
     RoleService roleService;
     @Autowired
     UserRoleService userRoleService;
-    @RequestMapping("")
-    public String home(Model model)
-    {
-        return "admin/home";
-    }
+//    @RequestMapping("")
+//    public String home(Model model)
+//    {
+//        return "admin/home";
+//    }
     @RequestMapping(path = "/login")
     public String loginAdmin()
     {
@@ -38,6 +38,12 @@ public class AdminController {
         }
 
         return "admin/user/login";
+    }
+
+    @RequestMapping(path = "/changePassword")
+    public String changePassword()
+    {
+        return null;
     }
 
     public boolean checkUser()

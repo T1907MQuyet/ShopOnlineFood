@@ -32,4 +32,11 @@ public interface OrderRepository extends JpaRepository<Orders,Integer> {
 
     @Query("SELECT o FROM Orders o WHERE status = 5 ORDER BY updated ASC ")
     Page<Orders> findPagiOrderCancelled(Pageable pageable);
+
+//    @Query(value = "select created, SUM(total_price) as total FROM orders WHERE status =4  order BY customer_id, order_address")
+//    List<Orders> getOrderComplete(int month);
+
+
+//    @Query(value = "SELECT o FROM Orders o WHERE EXTRACT (month FROM o.created) =: ?1 AND status = 4", nativeQuery = true)
+//    List<Orders> getOrderComplete(int month);
 }

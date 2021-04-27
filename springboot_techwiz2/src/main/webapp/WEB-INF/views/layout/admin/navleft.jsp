@@ -82,6 +82,14 @@
           </a>
           </li>
           <li class="nav-item has-treeview">
+            <a href="${pageContext.request.contextPath}/admin/feedback" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Feedback Manager
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link"><i class="nav-icon fas fa-tree"></i><p>Account Admin<i class="right fas fa-angle-left"></i></p></a>
             <ul class="nav nav-treeview">
               <li class="nav-item">

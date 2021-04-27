@@ -23,12 +23,14 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
+<c:if test="${pageContext.request.userPrincipal.name == null}">
 <div class="login-box">
     <div class="login-logo">
         <a href=""><b>Admin</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
+
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
             <c:if test="${param.error != null}">
@@ -76,8 +78,9 @@
         <!-- /.login-card-body -->
     </div>
 </div>
+</c:if>
 <c:if test="${pageContext.request.userPrincipal.name != null}">
-    login
+    <a href="${pageContext.request.contextPath}/admin" class="btn btn-primary btn-block">Admin</a>
 </c:if>
 
 

@@ -1,6 +1,7 @@
 package project_techwiz2.springboot_techwiz2.service.Impl.core;
 
 import org.aspectj.weaver.ast.Or;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -61,6 +62,18 @@ public class OrderServiceImpl implements OrderService {
         List<Orders> list = orderRepository.findAllByStatus(status);
         int count = list.size();
         return count;
+    }
+
+    @Override
+    public List<Orders> listOrderMonth(int month) {
+        try{
+            //List<Orders> listMonth = orderRepository.getOrderComplete(month);
+            //return listMonth;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
